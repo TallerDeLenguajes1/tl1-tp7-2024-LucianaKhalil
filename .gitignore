@@ -2,6 +2,11 @@
 # Local History for Visual Studio Code
 .history/
 
+.vscode/
+*.pdf
+*.csproj
+*.sln
+
 # Windows Installer files from build outputs
 *.cab
 *.msi
