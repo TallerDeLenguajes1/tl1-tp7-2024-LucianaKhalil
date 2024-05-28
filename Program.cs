@@ -1,4 +1,5 @@
 ﻿using EspacioCalculadora;
+using Empleados;
 using System;
 
 class Program
@@ -9,9 +10,8 @@ class Program
 
         Calculadora MiCalculadora = new Calculadora();
         int opcion;
-        double valor, dato=0;
-        string operaciones="";//hay que inicializar string
-
+        double valor, dato = 0;
+        string operaciones = ""; // hay que inicializar string
 
         do
         {
@@ -27,23 +27,22 @@ class Program
                 Console.WriteLine("Ingrese el valor para la operación:");
                 if (double.TryParse(Console.ReadLine(), out valor))
                 {
-
                     switch (operacion)
                     {
                         case 1:
-                            operaciones="suma";
+                            operaciones = "suma";
                             MiCalculadora.sumar(valor);
                             break;
                         case 2:
-                            operaciones="resta";
+                            operaciones = "resta";
                             MiCalculadora.restar(valor);
                             break;
                         case 3:
-                            operaciones="multiplicacion";
+                            operaciones = "multiplicacion";
                             MiCalculadora.multiplicar(valor);
                             break;
                         case 4:
-                            operaciones="division";
+                            operaciones = "division";
                             MiCalculadora.dividir(valor);
                             break;
                         default:
@@ -69,5 +68,11 @@ class Program
 
         double Resultado = MiCalculadora.Resultado;
         Console.WriteLine($"Resultado final: {Resultado}");
+
+        // Crear una instancia de Empleado y llamar al método MostrarDetalles dentro del método Main
+        Empleado empleado = new Empleado("John", "Doe", new DateTime(1990, 5, 15), 'S', DateTime.Now, 350000.0, Cargos.Administrativo);
+        empleado.MostrarDetalles();
+
+      
     }
 }

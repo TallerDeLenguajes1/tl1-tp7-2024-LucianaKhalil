@@ -24,6 +24,6 @@ namespace EspacioCalculadora{//organizador logico
         }
         }
 }
-
-
 }
+
+
