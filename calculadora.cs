@@ -2,7 +2,7 @@ namespace EspacioCalculadora{//organizador logico
     public class Calculadora{
 
         
-        private double dato;
+        private double dato=0;
 
         public double Resultado{//propiedad para acceder a el dato si esta privado
             get => dato;            

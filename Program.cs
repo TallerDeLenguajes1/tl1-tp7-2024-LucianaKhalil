@@ -1,50 +1,73 @@
-﻿// See https://aka.ms/new-console-template for more information
-using EspacioCalculadora;
-Console.WriteLine("Hello, World!");
+﻿using EspacioCalculadora;
+using System;
 
-Calculadora MiCalculadora=new Calculadora();
-
-do
+class Program
 {
-    
-    Console.WriteLine("Seleccione la operacion que desea realizar:");
-    Console.WriteLine("1. Sumar");
-    Console.WriteLine("2. Restar");
-    Console.WriteLine("3. Multiplicar");
-    Console.WriteLine("4. Dividir");
+    static void Main()
+    {
+        Console.WriteLine("¡Hola, Mundo!");
 
-    int operacion=int.Parse(Console.ReadLine());
-        switch (operacion)
+        Calculadora MiCalculadora = new Calculadora();
+        int opcion;
+        double valor, dato=0;
+        string operaciones="";//hay que inicializar string
+
+
+        do
         {
-            case 1: 
-                MiCalculadora.sumar(5);
-                break;
-            case 2: 
-                MiCalculadora.restar(2);
-                break;
-            case 3: 
-                MiCalculadora.multiplicar(3);
-                break;
-            case 4: 
-                if(dato!=0){
-                MiCalculadora.dividir(2);
-                }else{
-                    Console.WriteLine("No se puede dividir por 0");
+            Console.WriteLine("Seleccione la operación que desea realizar:");
+            Console.WriteLine("1. Sumar");
+            Console.WriteLine("2. Restar");
+            Console.WriteLine("3. Multiplicar");
+            Console.WriteLine("4. Dividir");
+
+            // Leer la operación
+            if (int.TryParse(Console.ReadLine(), out int operacion))
+            {
+                Console.WriteLine("Ingrese el valor para la operación:");
+                if (double.TryParse(Console.ReadLine(), out valor))
+                {
+
+                    switch (operacion)
+                    {
+                        case 1:
+                            operaciones="suma";
+                            MiCalculadora.sumar(valor);
+                            break;
+                        case 2:
+                            operaciones="resta";
+                            MiCalculadora.restar(valor);
+                            break;
+                        case 3:
+                            operaciones="multiplicacion";
+                            MiCalculadora.multiplicar(valor);
+                            break;
+                        case 4:
+                            operaciones="division";
+                            MiCalculadora.dividir(valor);
+                            break;
+                        default:
+                            Console.WriteLine("Operación no válida");
+                            break;
+                    }
+
+                    // Imprimir el resultado
+                    Console.WriteLine($"La {operaciones} de {dato} y {valor} es igual a: {MiCalculadora.Resultado}");
                 }
-                break;
-            default:
-                Console.WriteLine("No se puede realizar la operacion");
-                break;
-        }
+                else
+                {
+                    Console.WriteLine("Valor ingresado no válido.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Operación no válida.");
+            }
 
-    Console.WriteLine("¿Desea realizar otra operación? (1: Si, 0: No)");
-    string confirmacion = Console.ReadLine();
-    int.TryParse(confirmacion, out opcion);
-} while (opcion == 1);
+            Console.WriteLine("¿Desea realizar otra operación? (1: Si, 0: No)");
+        } while (int.TryParse(Console.ReadLine(), out opcion) && opcion == 1);
 
-MiCalculadora.sumar(20);
-MiCalculadora.multiplicar(2);
-MiCalculadora.multiplicar(3);
-MiCalculadora.dividir(2);
-double Resultado = MiCalculadora.Resultado;
-System.Console.WriteLine(Resultado);
+        double Resultado = MiCalculadora.Resultado;
+        Console.WriteLine($"Resultado final: {Resultado}");
+    }
+}
